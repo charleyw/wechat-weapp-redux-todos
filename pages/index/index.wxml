@@ -1,10 +1,10 @@
 <!--index.wxml-->
 <view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  <view wx:for="{{todos}}" class="todo-item {{item.completed ? 'completed' : ''}}" id="{{item.id}}" bindtap="handleCheck">
+    <icon type="{{item.completed ? 'success_circle' : 'circle'}}" size="18"/> {{item.text}}
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+  <form class="add-todo" bindsubmit="addTodo">
+    <input name="todo" class="todo-input" placeholder="点击添加"/>
+    <button formType="submit">完成</button>
+  </form>
 </view>
