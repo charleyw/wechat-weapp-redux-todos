@@ -1,29 +1,57 @@
 //index.js
+const actions = require( '../../actions/index.js' )
+const addTodo = actions.addTodo
+const setVisibilityFilter = actions.setVisibilityFilter
+const toggleTodo = actions.toggleTodo
+
 //获取应用实例
 var app = getApp()
-var todos = [
-      {id: 0, text: '看小程序文档', completed: false},
-      {id: 1, text: '看小程序设计指南', completed: false},
-      {id: 2, text: '写小程序版本的Todo', completed: false},
-      {id: 3, text: '使用Redux', completed: false}
-    ];
+var store = app.store
 
-Page({
+Page( {
   data: {
-    todos: todos 
+    todos: [],
+    filters: [ { key: 'SHOW_ALL', text: '全部' }, { key: 'SHOW_ACTIVE', text: '正在进行' }, { key: 'SHOW_COMPLETED', text: '已完成' }]
   },
-  addTodo: function (e) {
-    todos.push({id: todos.length, text: e.detail.value.todo, completed: false});
-    this.setData({todos})
+  addTodo: function( e ) {
+    store.dispatch( addTodo( e.detail.value.todo ) )
   },
-  handleCheck: function (e) {
-    const id = e.target.id
-    this.setData({todos: this.data.todos.map(t => {
-      if (t.id.toString() !== id){
-        return t
-      }
+  handleCheck: function( e ) {
+    const id = parseInt( e.target.id )
+    store.dispatch( toggleTodo( id ) )
+  },
+  applyFilter: function( e ) {
+    store.dispatch( setVisibilityFilter( e.target.id ) )
+  },
+  onLoad: function() {
+    const state = store.getState();
+    this.setData( {
+      todos: filterTodos( state.todos, state.visibilityFilter ),
+      visibilityFilter: state.visibilityFilter
+    })
 
-      return Object.assign({}, t, {completed: !t.completed})
-    })})
+    this.unsubscribe = store.subscribe(() => {
+      const state = store.getState();
+      this.setData( {
+        todos: filterTodos( state.todos, state.visibilityFilter ),
+        visibilityFilter: state.visibilityFilter
+      })
+    })
+  },
+  onUnload: function() {
+    this.unsubscribe()
   }
 })
+
+const filterTodos = ( todos, filter ) => {
+  switch( filter ) {
+    case 'SHOW_ALL':
+      return todos
+    case 'SHOW_COMPLETED':
+      return todos.filter( t => t.completed )
+    case 'SHOW_ACTIVE':
+      return todos.filter( t => !t.completed )
+    default:
+      throw new Error( 'Unknown filter: ' + filter )
+  }
+}
