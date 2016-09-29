@@ -1,47 +1,23 @@
 //index.js
+const connect = require( '../../libs/connect.js' )
 const actions = require( '../../actions/index.js' )
 const addTodo = actions.addTodo
 const setVisibilityFilter = actions.setVisibilityFilter
 const toggleTodo = actions.toggleTodo
 
-//获取应用实例
-var app = getApp()
-var store = app.store
-
-Page( {
+const pageConfig = {
   data: {
     todos: [],
     filters: [ { key: 'SHOW_ALL', text: '全部' }, { key: 'SHOW_ACTIVE', text: '正在进行' }, { key: 'SHOW_COMPLETED', text: '已完成' }]
   },
-  addTodo: function( e ) {
-    store.dispatch( addTodo( e.detail.value.todo ) )
-  },
   handleCheck: function( e ) {
     const id = parseInt( e.target.id )
-    store.dispatch( toggleTodo( id ) )
+    this.toggleTodo( id );
   },
   applyFilter: function( e ) {
-    store.dispatch( setVisibilityFilter( e.target.id ) )
-  },
-  onLoad: function() {
-    const state = store.getState();
-    this.setData( {
-      todos: filterTodos( state.todos, state.visibilityFilter ),
-      visibilityFilter: state.visibilityFilter
-    })
-
-    this.unsubscribe = store.subscribe(() => {
-      const state = store.getState();
-      this.setData( {
-        todos: filterTodos( state.todos, state.visibilityFilter ),
-        visibilityFilter: state.visibilityFilter
-      })
-    })
-  },
-  onUnload: function() {
-    this.unsubscribe()
+    this.setVisibilityFilter( e.target.id )
   }
-})
+}
 
 const filterTodos = ( todos, filter ) => {
   switch( filter ) {
@@ -55,3 +31,17 @@ const filterTodos = ( todos, filter ) => {
       throw new Error( 'Unknown filter: ' + filter )
   }
 }
+
+const mapStateToData = state => ({
+  todos: filterTodos( state.todos, state.visibilityFilter ),
+  visibilityFilter: state.visibilityFilter
+})
+
+const mapDispatchToPage = dispatch => ({
+  setVisibilityFilter: filter => dispatch(setVisibilityFilter(filter)),
+  toggleTodo: id => dispatch(toggleTodo(id)),
+  addTodo: event => dispatch(addTodo(event.detail.value.todo)),
+})
+
+const nextPageConfig = connect(mapStateToData, mapDispatchToPage)(pageConfig)
+Page(nextPageConfig);

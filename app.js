@@ -1,10 +1,11 @@
 //app.js
 require('./libs/redux.js')
+const Provider = require('./libs/Provider.js')
 const createStore = Redux.createStore
 const reducer = require('./reducers/index.js')
 const store = createStore(reducer)
 
-App({
+App(Provider(store)({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
@@ -33,4 +34,4 @@ App({
     userInfo:null
   },
   store: store
-})
+}))
