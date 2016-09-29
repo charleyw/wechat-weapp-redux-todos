@@ -1,9 +1,10 @@
 //app.js
 require('./libs/redux.js')
-const Provider = require('./libs/Provider.js')
 const createStore = Redux.createStore
 const reducer = require('./reducers/index.js')
 const store = createStore(reducer)
+const WeAppRedux = require('./libs/wechat-weapp-redux/index.js');
+const {Provider} = WeAppRedux;
 
 App(Provider(store)({
   onLaunch: function () {
