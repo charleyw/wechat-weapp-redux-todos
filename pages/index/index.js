@@ -1,9 +1,6 @@
 //index.js
 const {connect} = require( '../../libs/wechat-weapp-redux/index.js' )
-const actions = require( '../../actions/index.js' )
-const addTodo = actions.addTodo
-const setVisibilityFilter = actions.setVisibilityFilter
-const toggleTodo = actions.toggleTodo
+const {addTodo, setVisibilityFilter, toggleTodo} = require( '../../actions/index.js' )
 
 const pageConfig = {
   data: {

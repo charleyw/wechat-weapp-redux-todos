@@ -1,5 +1,5 @@
 //app.js
-require('./libs/redux.js')
+const Redux = require('./libs/redux.js')
 const createStore = Redux.createStore
 const reducer = require('./reducers/index.js')
 const store = createStore(reducer)

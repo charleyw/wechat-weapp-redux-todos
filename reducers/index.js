@@ -1,6 +1,7 @@
-var combineReducers = Redux.combineReducers
-var todos = require('./todos.js')
-var visibilityFilter = require('./visibilityFilter.js')
+const Redux = require('../libs/redux.js')
+const combineReducers = Redux.combineReducers
+const todos = require('./todos.js')
+const visibilityFilter = require('./visibilityFilter.js')
 
 const todoApp = combineReducers({
   todos,
