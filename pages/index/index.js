@@ -1,5 +1,5 @@
 //index.js
-const {connect} = require( '../../libs/wechat-weapp-redux/index.js' )
+const {connect} = require( '../../libs/wechat-weapp-redux.js' )
 const {addTodo, setVisibilityFilter, toggleTodo} = require( '../../actions/index.js' )
 
 const pageConfig = {
