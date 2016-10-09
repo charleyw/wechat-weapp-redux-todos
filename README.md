@@ -3,7 +3,7 @@
 ======================
 在微信小程序中使用[Redux](https://github.com/reactjs/redux)实现Todo list，同时集成了redux-devtools
 
-![remote-redux-devtools](http://cdn.kidsmeet.cn/remote-redux-devtools.gif)
+![remote-redux-devtools](./remote-redux-devtools.gif)
 
 使用了我自己写的小程序的Redux绑定库：[wechat-weapp-redux](https://github.com/charleyw/wechat-weapp-redux)
 
