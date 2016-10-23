@@ -27,3 +27,7 @@
 * 集成redux-undo
 * 集成redux-persist
 
+
+## Liscense
+
+© 2016 Wang Chao. This code is distributed under the MIT license.
