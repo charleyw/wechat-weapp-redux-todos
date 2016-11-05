@@ -13,6 +13,12 @@ const pageConfig = {
   },
   applyFilter: function( e ) {
     this.setVisibilityFilter( e.target.id )
+  },
+  onLoad: function() {
+    console.log('on load')
+  },
+  onUnload: function() {
+    console.log('on unload')
   }
 }
 
