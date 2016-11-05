@@ -1,3 +1,5 @@
+import {assign} from '../utils/Object'
+
 const todo = (state, action) => {
   switch (action.type) {
     case 'ADD_TODO':
@@ -11,7 +13,7 @@ const todo = (state, action) => {
         return state
       }
 
-      return Object.assign({}, state, {completed: !state.completed})
+      return assign({}, state, {completed: !state.completed})
     default:
       return state
   }
