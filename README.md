@@ -13,6 +13,10 @@
 
 ### 开启redux-devtools
 
+**需要打开小程序开发工具的配置中`项目`->`基础信息`->`开发环境不校验请求域名以及 TLS 版本 `**
+
+![weapp-config](./weapp-config.png)
+
 1. 把本项目根目录下的libs拷贝到`src/libs`中
 2. 修改`src/configureStore`, 改成这样:
 ```
@@ -42,7 +46,7 @@ module.exports = configureStore;
    ```
 
 2. 浏览器中访问**localhost:5678**
-	如果不能访问，可以尝试使用**http://remotedev.io/local/**，打开后点击下面的setting，设置使用本地的server。
+ 如果不能访问，可以尝试使用**http://remotedev.io/local/**，打开后点击下面的setting，设置使用本地的server。
 
 ### Todos
 * 集成redux-undo
