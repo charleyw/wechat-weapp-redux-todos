@@ -1127,8 +1127,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they
 	 * get the Object implementation, which is slower but behaves correctly.
 	 */
-	Buffer.TYPED_ARRAY_SUPPORT = (global !== undefined && global.TYPED_ARRAY_SUPPORT !== undefined)
-	  ? global.TYPED_ARRAY_SUPPORT
+	Buffer.TYPED_ARRAY_SUPPORT = (typeof TYPED_ARRAY_SUPPORT !== 'undefined')
+	  ? TYPED_ARRAY_SUPPORT
 	  : typedArraySupport()
 
 	/*
@@ -3752,10 +3752,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      self.disconnect();
 	    };
 
-	    if (global.attachEvent) {
-	      global.attachEvent('onunload', unloadHandler);
-	    } else if (global.addEventListener) {
-	      global.addEventListener('beforeunload', unloadHandler, false);
+	    if (typeof attachEvent !== 'undefined') {
+	      attachEvent('onunload', unloadHandler);
+	    } else if (typeof addEventListener !== 'undefined') {
+	      addEventListener('beforeunload', unloadHandler, false);
 	    }
 	  }
 	};
@@ -3983,8 +3983,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	SCSocket.prototype.decodeBase64 = function (encodedString) {
 	  var decodedString;
 	  if (typeof Buffer == 'undefined') {
-	    if (global.atob) {
-	      decodedString = global.atob(encodedString);
+	    if (typeof atob !== 'undefined') {
+	      decodedString = atob(encodedString);
 	    } else {
 	      decodedString = base64.decode(encodedString);
 	    }
@@ -3998,8 +3998,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	SCSocket.prototype.encodeBase64 = function (decodedString) {
 	  var encodedString;
 	  if (typeof Buffer == 'undefined') {
-	    if (global.btoa) {
-	      encodedString = global.btoa(decodedString);
+	    if (typeof btoa !== 'undefined') {
+	      encodedString = btoa(decodedString);
 	    } else {
 	      encodedString = base64.encode(decodedString);
 	    }
@@ -10274,8 +10274,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      sendError(errorAction);
 	      return false;
 	    };
-	  } else if (typeof global !== 'undefined' && global.ErrorUtils) {
-	    global.ErrorUtils.setGlobalHandler(function (error, isFatal) {
+	  } else if (typeof ErrorUtils !== 'undefined') {
+	    ErrorUtils.setGlobalHandler(function (error, isFatal) {
 	      sendError({ type: ERROR, error: error, isFatal: isFatal });
 	    });
 	  }
@@ -10634,13 +10634,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	var binaryToBase64Replacer = function (key, value) {
-	  if (global.ArrayBuffer && value instanceof global.ArrayBuffer) {
+	  if (typeof ArrayBuffer !== 'undefined' && value instanceof ArrayBuffer) {
 	    return {
 	      base64: true,
 	      data: arrayBufferToBase64(value)
 	    };
-	  } else if (global.Buffer) {
-	    if (value instanceof global.Buffer){
+	  } else if (typeof Buffer !== 'undefined') {
+	    if (value instanceof Buffer){
 	      return {
 	        base64: true,
 	        data: value.toString('base64')
@@ -10651,10 +10651,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // before we can convert them to base64 strings.
 	    if (value && value.type == 'Buffer' && value.data instanceof Array) {
 	      var rehydratedBuffer;
-	      if (global.Buffer.from) {
-	        rehydratedBuffer = global.Buffer.from(value.data);
+	      if (Buffer.from) {
+	        rehydratedBuffer = Buffer.from(value.data);
 	      } else {
-	        rehydratedBuffer = new global.Buffer(value.data);
+	        rehydratedBuffer = new Buffer(value.data);
 	      }
 	      return {
 	        base64: true,
