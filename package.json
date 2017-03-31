@@ -1,0 +1,9 @@
+{
+  "name": "wechat-weapp-redux-todos",
+  "version": "0.1.0",
+  "description": "weapp todo build with redux",
+  "main": "index.js",
+  "repository": "git@github.com:charleyw/wechat-weapp-redux-todos.git",
+  "author": "Chao Wang <cwang8023@gmail.com>",
+  "license": "MIT"
+}
