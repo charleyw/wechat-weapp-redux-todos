@@ -1,4 +1,4 @@
-const {createStore, compose} = require('./libs/redux.js');
+const {Redux: {createStore, compose}} = require('./libs/index');
 // const devTools = require('./libs/remote-redux-devtools.js').default;
 const reducer = require('./reducers/index.js')
 

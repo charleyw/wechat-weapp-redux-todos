@@ -13,7 +13,7 @@ const setVisibilityFilter = (filter) => ({
 const toggleTodo = (id) => ({
   type: 'TOGGLE_TODO',
   id
-})
+});
 
 module.exports = {
     addTodo: addTodo,

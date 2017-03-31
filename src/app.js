@@ -1,9 +1,9 @@
 //app.js
-const {Provider} = require('./libs/wechat-weapp-redux.js');
+const {WeAppRedux: {Provider}} = require('./libs/index');
 const configureStore = require('./configureStore.js');
 
 App(Provider(configureStore())({
   onLaunch: function () {
     console.log("onLaunch")
   }
-}))
+}));
