@@ -26,7 +26,7 @@
 }
 
 .filters text.active {
-  border-color: #09bb07;
-  background-color: #09bb07;
+  border-color: #108ee9;
+  background-color: #108ee9;
   color: #ffffff;
 }
