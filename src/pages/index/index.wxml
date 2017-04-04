@@ -1,22 +1,28 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="filters">
-    <text 
-      wx:for="{{filters}}" 
-      bindtap="applyFilter" 
-      id="{{item.key}}" 
-      class="{{visibilityFilter == item.key ? 'active' : ''}}"
-    >{{item.text}}</text>
-  </view>
+  <form>
+    <view class="todo-input-container">
+      <text class="add-icon">+</text>
+      <input class="todo-input" name="todo" placeholder="添加任务..." placeholder-class="todo-input-placeholder" bindinput="handleInputTodo"/>
+      <button class="submit-btn" formType="reset" bindtap="submit" wx:if="{{todo.length > 0}}">
+        <icon wx:if="{{todo.length > 0}}" color="#fff" type="success_no_circle" size="18"/>
+      </button>
+    </view>
+  </form>
 
   <view class="todos">
-    <view wx:for="{{todos}}" class="todo-item {{item.completed ? 'completed' : ''}}" id="{{item.id}}" bindtap="handleCheck">
-      <icon type="{{item.completed ? 'success_circle' : 'circle'}}" size="18"/> {{item.text}}
+    <view wx:for="{{todos}}" class="todo-item {{item.completed ? 'completed' : ''}}" wx:key="{{item.id}}">
+      <icon class="todo-item-check" type="{{item.completed ? 'success_circle' : 'circle'}}" size="18" bindtap="handleCheck" id="{{item.id}}"/>
+      <text class="todo-item-name" bindtap="handleCheck" id="{{item.id}}">{{item.text}}</text>
     </view>
   </view>
-   
-  <form class="add-todo" bindsubmit="addTodo">
-    <input name="todo" class="todo-input" placeholder="点击添加"/>
-    <button formType="submit">完成</button>
-  </form>
+  <view class="show-completed-btn" bindtap="switchCompleted" wx:if="{{completedTodos && completedTodos.length > 0}}">
+    <text>{{showCompleted ? '隐藏' : '显示'}}已完成任务</text>
+  </view>
+  <view class="todos" wx:if="{{showCompleted}}">
+    <view wx:for="{{completedTodos}}" class="todo-item {{item.completed ? 'completed' : ''}}" wx:key="{{item.id}}">
+      <icon class="todo-item-check" type="{{item.completed ? 'success_circle' : 'circle'}}" size="18" bindtap="handleCheck" id="{{item.id}}"/>
+      <text class="todo-item-name" bindtap="handleCheck" id="{{item.id}}">{{item.text}}</text>
+    </view>
+  </view>
 </view>

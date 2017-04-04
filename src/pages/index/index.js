@@ -5,7 +5,8 @@ const {addTodo, setVisibilityFilter, toggleTodo} = require( '../../actions/index
 const pageConfig = {
   data: {
     todos: [],
-    filters: [ { key: 'SHOW_ALL', text: '全部' }, { key: 'SHOW_ACTIVE', text: '正在进行' }, { key: 'SHOW_COMPLETED', text: '已完成' }]
+    filters: [ { key: 'SHOW_ALL', text: '全部' }, { key: 'SHOW_ACTIVE', text: '正在进行' }, { key: 'SHOW_COMPLETED', text: '已完成' }],
+    defaultInput: ''
   },
   handleCheck: function( e ) {
     const id = parseInt( e.target.id )
@@ -13,6 +14,16 @@ const pageConfig = {
   },
   applyFilter: function( e ) {
     this.setVisibilityFilter( e.target.id )
+  },
+  handleInputTodo: function(e) {
+    this.setData({todo: e.detail.value})
+  },
+  submit: function() {
+    this.addTodo(this.data.todo);
+    this.setData({todo: ''})
+  },
+  switchCompleted: function() {
+    this.setData({showCompleted: !this.data.showCompleted});
   },
   onLoad: function() {
     console.log('on load')
@@ -36,14 +47,15 @@ const filterTodos = ( todos, filter ) => {
 }
 
 const mapStateToData = state => ({
-  todos: filterTodos( state.todos, state.visibilityFilter ),
+  todos: filterTodos( state.todos, 'SHOW_ACTIVE' ),
+  completedTodos: filterTodos( state.todos, 'SHOW_COMPLETED' ),
   visibilityFilter: state.visibilityFilter
 })
 
 const mapDispatchToPage = dispatch => ({
   setVisibilityFilter: filter => dispatch(setVisibilityFilter(filter)),
   toggleTodo: id => dispatch(toggleTodo(id)),
-  addTodo: event => dispatch(addTodo(event.detail.value.todo)),
+  addTodo: todo => dispatch(addTodo(todo)),
 })
 
 const nextPageConfig = connect(mapStateToData, mapDispatchToPage)(pageConfig)

@@ -1,32 +1,65 @@
-/**index.wxss**/
-.todos {
-  padding: 10px;
+.container {
+  padding: 8px;
 }
 
-.todo-item.completed {
-  color: #999;
-}
-
-.add-todo {
-  margin-top: 100px;
-}
-
-.filters {
+.todo-item,
+.todo-input-container {
   display: flex;
-} 
-
-.filters text {
-  margin: 0 10px;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #999;
+  margin-bottom: 8px;
+  padding: 0 16px;
+  height: 48px;
+  align-items: center;
   border-radius: 4px;
-  text-align: center;
-  flex: 1
 }
 
-.filters text.active {
-  border-color: #108ee9;
-  background-color: #108ee9;
-  color: #ffffff;
+.todo-input-container {
+  background-color: #76d0a3;
+  color: #fff;
+}
+
+.todo-item {
+  margin-bottom: 2px;
+  background-color: #fff;
+}
+
+.todo-item-check {
+  margin-right: 16px;
+}
+
+.add-icon {
+  margin-right: 16px;
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.todo-input {
+  flex: 1;
+}
+
+.todo-input-placeholder {
+  color: #fff;
+}
+
+.submit-btn {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+}
+
+.submit-btn::after {
+  content: none;
+}
+
+.show-completed-btn {
+  margin: 16px ;
+  text-align: center;
+}
+
+.show-completed-btn text {
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 10px;
+  background-color: #76d0a3;
+  color: #fff;
 }
