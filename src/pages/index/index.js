@@ -19,6 +19,8 @@ const pageConfig = {
     this.setData({todo: e.detail.value})
   },
   submit: function() {
+    if(this.data.todo.length <= 0) return;
+
     this.addTodo(this.data.todo);
     this.setData({todo: ''})
   },

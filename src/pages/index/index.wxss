@@ -22,6 +22,11 @@
   background-color: #fff;
 }
 
+.todo-item.completed text {
+  text-decoration: line-through;
+  color: #999;
+}
+
 .todo-item-check {
   margin-right: 16px;
 }
