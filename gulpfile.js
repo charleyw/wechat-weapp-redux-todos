@@ -15,7 +15,8 @@ gulp.task('build-lib', function () {
 gulp.task('transform-js', function () {
   return gulp.src(['src/**/*.js', '!src/libs/index.js'])
     .pipe(babel({
-      presets: ['es2015']
+      presets: ['es2015'],
+      plugins: ["transform-object-rest-spread"]
     }))
     .pipe(gulp.dest('dist'));
 });

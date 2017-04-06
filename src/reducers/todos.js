@@ -8,28 +8,27 @@ const todo = (state, action) => {
         text: action.text,
         createdAt: action.createdAt,
         completed: false
-      }
+      };
     case 'TOGGLE_TODO':
       if (state.id !== action.id) {
         return state
       }
 
-      return assign({}, state, {completed: !state.completed})
+      return assign({}, state, {completed: !state.completed});
     default:
       return state
   }
-}
+};
 
 const todos = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':
-      state.push(todo(undefined, action))
-      return state
+      return [todo(undefined, action), ...state];
     case 'TOGGLE_TODO':
-      return state.map(t => todo(t, action))
+      return state.map(t => todo(t, action));
     default:
       return state
   }
-}
+};
 
-module.exports = todos
+module.exports = todos;

@@ -1,6 +1,5 @@
 //app.js
-const {WeAppRedux: {Provider}} = require('./libs/index');
-const {ReduxPersist} = require('./libs/index');
+const {WeAppRedux: {Provider}, ReduxPersist} = require('./libs/index');
 const configureStore = require('./configureStore.js');
 import WeAppStorage from './libs/WeAppStorage';
 
