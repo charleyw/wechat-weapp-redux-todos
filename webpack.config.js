@@ -15,6 +15,9 @@ const config = {
     libraryTarget: 'umd',
     path: path.resolve(__dirname, 'dist/libs'),
     filename: 'index.js'
+  },
+  node: {
+    setImmediate: false
   }
 };
 

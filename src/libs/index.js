@@ -1,4 +1,7 @@
 import WeAppRedux from 'wechat-weapp-redux';
 import * as Redux from 'redux';
+import * as ReduxPersist from 'redux-persist';
 
-export {Redux, WeAppRedux};
+console.log(ReduxPersist)
+
+export {Redux, WeAppRedux, ReduxPersist};
