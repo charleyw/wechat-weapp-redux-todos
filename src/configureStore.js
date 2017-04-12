@@ -1,9 +1,15 @@
-const {Redux: {createStore, compose}, ReduxPersist: {autoRehydrate}} = require('./libs/index');
+import {Redux, ReduxPersist, ReduxSaga} from './libs/index';
 // const devTools = require('./libs/remote-redux-devtools.js').default;
-const reducer = require('./reducers/index.js');
+import reducer from './reducers/index';
+import {watchAddTodo} from './effects/hello';
+
+const {createStore, compose, applyMiddleware} = Redux;
 
 function configureStore() {
-  return createStore(reducer, undefined, compose(autoRehydrate()));
+  const sagaMiddleware = ReduxSaga.default();
+  const store = createStore(reducer, applyMiddleware(sagaMiddleware), compose(ReduxPersist.autoRehydrate()));
+  sagaMiddleware.run(watchAddTodo);
+  return store;
 }
 // function configureStore() {
 //   return createStore(reducer, compose(autoRehydrate(), devTools({
