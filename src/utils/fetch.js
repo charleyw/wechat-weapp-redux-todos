@@ -10,8 +10,8 @@ export const fetchJson = (url, options = {}) => {
       url,
       ...options,
       header: requestHeaders,
-      success: res => resolve(res.data),
-      fail: err => reject(err)
+      success: resolve,
+      fail: reject
     })
   })
 };

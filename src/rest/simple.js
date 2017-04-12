@@ -54,20 +54,15 @@ export default (apiUrl, httpClient = fetchJson) => {
      * @returns {Object} REST response
      */
     const convertHTTPResponseToREST = (response, type, resource, params) => {
-        const { headers, json } = response;
+        const { data } = response;
         switch (type) {
         case GET_LIST:
-            if (!headers.has('content-range')) {
-                throw new Error('The Content-Range header is missing in the HTTP Response. This header is necessary for pagination. If you are using CORS, did you declare Content-Range in the Access-Control-Allow-Headers header?');
-            }
             return {
                 data: json.map(x => x),
                 total: parseInt(headers.get('content-range').split('/').pop(), 10),
             };
-        case CREATE:
-            return { ...params.data, id: json.id };
         default:
-            return json;
+            return data;
         }
     };
 

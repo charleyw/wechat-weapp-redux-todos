@@ -5,7 +5,7 @@ const auth = (state = {authenticated: false}, action) => {
 
   switch (action.type) {
     case CRUD_CREATE_SUCCESS:
-      return action.payload;
+      return {authenticated: true, ...action.payload};
     default:
       return state
   }
