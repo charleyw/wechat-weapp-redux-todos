@@ -7,7 +7,7 @@ import {
 } from '../actions/fetchActions';
 
 const {takeEvery, takeLatest} = ReduxSaga;
-const {put, call, cancelled} = ReduxSagaEffects;
+const {put, call, cancelled, select} = ReduxSagaEffects;
 
 const crudFetch = (restClient, successSideEffects = () => [], failureSideEffects = () => []) => {
   function *handleFetch(action) {
@@ -20,7 +20,8 @@ const crudFetch = (restClient, successSideEffects = () => [], failureSideEffects
     ];
     let response;
     try {
-      response = yield call(restClient, restType, meta.resource, payload);
+      const auth = yield select(state => state.auth);
+      response = yield call(restClient, restType, meta.resource, payload, auth);
       yield [
         put({
           type: `${type}_SUCCESS`,

@@ -22,7 +22,7 @@
   <view class="todos">
     <view wx:for="{{todos}}" class="todo-item {{item.completed ? 'completed' : ''}}" wx:key="{{item.id}}">
       <icon class="todo-item-check" type="{{item.completed ? 'success_circle' : 'circle'}}" size="18" bindtap="handleCheck" id="{{item.id}}"/>
-      <text class="todo-item-name" bindtap="handleCheck" id="{{item.id}}">{{item.text}}</text>
+      <text class="todo-item-name" bindtap="handleCheck" id="{{item.id}}">{{item.name}}</text>
     </view>
   </view>
   <view class="show-completed-btn" bindtap="switchCompleted" wx:if="{{completedTodos && completedTodos.length > 0}}">

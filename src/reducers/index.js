@@ -1,13 +1,16 @@
 const {Redux: {combineReducers}} = require('../libs/index');
-const todos = require('./todos.js');
-const visibilityFilter = require('./visibilityFilter.js');
 
 import auth from './auth'
+import resourceReducer from './resource/index'
 
-const todoApp = combineReducers({
-  todos,
-  visibilityFilter,
-  auth
-});
+export default (resources) => {
+  const resourceReducers = {};
+  resources.forEach(resource => {
+    resourceReducers[resource.name] = resourceReducer(resource.name, resource.options);
+  });
 
-module.exports = todoApp;
+  return combineReducers({
+    ...resourceReducers,
+    auth,
+  });
+};

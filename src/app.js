@@ -7,7 +7,7 @@ import {login} from './actions/auth';
 const store = configureStore();
 
 const tryToLogin = (err, state) => {
-  if (!state.auth || !state.auth.authenticated || !state.auth.expiredAt <= new Date().getTime()) {
+  if (!state.auth || !state.auth.authenticated || state.auth.expiredAt <= new Date().getTime()) {
     wx.login({
       success: function (res) {
         if (res.code) {

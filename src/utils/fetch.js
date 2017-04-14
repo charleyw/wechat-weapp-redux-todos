@@ -1,8 +1,8 @@
 export const fetchJson = (url, options = {}) => {
   const requestHeaders = options.header || {Accept: 'application/json'};
 
-  if (options.user && options.user.authenticated && options.user.token) {
-    requestHeaders['Authorization'] = options.user.token;
+  if (options.auth && options.auth.authenticated && options.auth.token) {
+    requestHeaders['Authorization'] = `Bearer ${options.auth.token}`;
   }
 
   return new Promise((resolve, reject) => {

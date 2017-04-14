@@ -1,10 +1,6 @@
-let nextTodoId = 0
-const addTodo = (text) => ({
-  type: 'ADD_TODO',
-  id: nextTodoId++,
-  createdAt: new Date().getTime(),
-  text
-})
+import {crudCreate} from './dataActions'
+
+const addTodo = (projectId, name) => (crudCreate('todos', {name}, `projects/${projectId}/todos`));
 
 const setVisibilityFilter = (filter) => ({
   type: 'SET_VISIBILITY_FILTER',
