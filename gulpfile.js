@@ -37,6 +37,10 @@ gulp.task('watch', function () {
   gulp.watch(['src/**/*.json', 'src/**/*.wxml', 'src/**/*.wxss'], ['copy-other-files'])
 });
 
+gulp.task('dev', function () {
+  return runSequence('build', 'watch')
+});
+
 gulp.task('clean', function () {
   return gulp.src('dist/*', {read: false}).pipe(clean());
 });
