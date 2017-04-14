@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const webpack = require('webpack');
 
 const config = {
   context: path.resolve(__dirname, 'src'),
@@ -10,6 +11,11 @@ const config = {
       { test: /libs\/index\.js$/, use: [{loader: 'babel-loader'}], exclude: /node_modules/ }
     ]
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    })
+  ],
   output: {
     library: 'Libs',
     libraryTarget: 'umd',

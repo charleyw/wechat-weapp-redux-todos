@@ -1,7 +1,7 @@
 //app.js
 const {WeAppRedux: {Provider}, ReduxPersist} = require('./libs/index');
 const configureStore = require('./configureStore.js');
-import WeAppStorage from './libs/WeAppStorage';
+import WeAppStorage from './utils/WeAppStorage';
 import {login} from './actions/auth';
 
 const store = configureStore();
