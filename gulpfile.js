@@ -3,10 +3,12 @@ const watch = require('gulp-watch');
 const webpackStream = require('webpack-stream');
 const rename = require("gulp-rename");
 const babel = require('gulp-babel');
+const plumber = require('gulp-plumber');
 const webpack = require('webpack');
 
 gulp.task('build-lib', function () {
   return gulp.src('src/libs/index.js')
+    .pipe(plumber())
     .pipe(webpackStream( require('./webpack.config.js'), webpack))
     .pipe(rename('index.js'))
     .pipe(gulp.dest('dist/libs'))
@@ -14,6 +16,7 @@ gulp.task('build-lib', function () {
 
 gulp.task('transform-js', function () {
   return gulp.src(['src/**/*.js', '!src/libs/index.js'])
+    .pipe(plumber())
     .pipe(babel({
       presets: ['es2015'],
       plugins: ["transform-object-rest-spread"]
