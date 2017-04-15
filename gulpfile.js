@@ -27,14 +27,14 @@ gulp.task('transform-js', function () {
 });
 
 gulp.task('copy-other-files', function () {
-  return gulp.src(['src/**/*.json', 'src/**/*.wxml', 'src/**/*.wxss'])
+  return gulp.src(['src/**/*.json', 'src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.svg'])
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('watch', function () {
   gulp.watch('src/libs/index.js', ['build-lib']);
   gulp.watch(['src/**/*.js', '!src/libs/*'], ['transform-js']);
-  gulp.watch(['src/**/*.json', 'src/**/*.wxml', 'src/**/*.wxss'], ['copy-other-files'])
+  gulp.watch(['src/**/*.json', 'src/**/*.wxml', 'src/**/*.wxss', 'src/images/*.svg'], ['copy-other-files'])
 });
 
 gulp.task('dev', function () {

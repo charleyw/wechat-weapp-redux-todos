@@ -1,37 +1,17 @@
 <!--index.wxml-->
 <view class="container">
-  <form>
-    <view class="todo-input-container">
-      <text class="add-icon">+</text>
-      <input
-          class="todo-input"
-          name="todo"
-          value="{{todo}}"
-          placeholder="添加任务..."
-          placeholder-class="todo-input-placeholder"
-          confirm-hold="{{true}}"
-          bindinput="handleInputTodo"
-          bindconfirm="submit"
-      />
-      <button class="submit-btn" formType="reset" bindtap="submit" wx:if="{{todo.length > 0}}">
-        <icon wx:if="{{todo.length > 0}}" color="#fff" type="success_no_circle" size="18"/>
-      </button>
+  <view class="projects">
+    <view wx:for="{{projects}}" class="project-item flex-middle" wx:key="{{item.id}}">
+      <image class="list-item-icon" src="../../images/list.svg"/>
+      <text class="project-name flex-unit">{{item.name}}</text>
+      <text class="project-todos-count">2</text>
     </view>
-  </form>
-
-  <view class="todos">
-    <view wx:for="{{todos}}" class="todo-item {{item.completed ? 'completed' : ''}}" wx:key="{{item.id}}">
-      <icon class="todo-item-check" type="{{item.completed ? 'success_circle' : 'circle'}}" size="18" bindtap="handleCheck" id="{{item.id}}"/>
-      <text class="todo-item-name" bindtap="handleCheck" id="{{item.id}}">{{item.name}}</text>
+    <view class="add-project-item flex-middle">
+      <image class="list-item-icon" src="../../images/plus.svg"/>
+      <text class="todo-item-name">创建清单</text>
     </view>
   </view>
-  <view class="show-completed-btn" bindtap="switchCompleted" wx:if="{{completedTodos && completedTodos.length > 0}}">
-    <text>{{showCompleted ? '隐藏' : '显示'}}已完成任务</text>
-  </view>
-  <view class="todos" wx:if="{{showCompleted}}">
-    <view wx:for="{{completedTodos}}" class="todo-item {{item.completed ? 'completed' : ''}}" wx:key="{{item.id}}">
-      <icon class="todo-item-check" color="{{item.completed ? '#999' : '#333'}}" type="{{item.completed ? 'success_circle' : 'circle'}}" size="18" bindtap="handleCheck" id="{{item.id}}"/>
-      <text class="todo-item-name" bindtap="handleCheck" id="{{item.id}}">{{item.text}}</text>
-    </view>
+  <view class="float-action-btn add-todo">
+    <image src="../../images/plus-white.svg"/>
   </view>
 </view>
