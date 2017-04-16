@@ -1,11 +1,11 @@
 <!--index.wxml-->
 <view class="container">
   <view class="projects">
-    <view wx:for="{{projects.list.ids}}" class="project-item flex-middle" wx:key="{{item}}">
+    <navigator url="../todos/index?projectId={{item}}" wx:for="{{projects.list.ids}}" class="project-item flex-middle" wx:key="{{item}}">
       <image class="list-item-icon" src="../../images/list.svg"/>
       <text class="project-name flex-unit">{{projects.data[item].name}}</text>
       <text class="project-todos-count">2</text>
-    </view>
+    </navigator>
     <view class="add-project-item flex-middle" bindtap="showProjectForm">
       <image class="list-item-icon" src="../../images/plus.svg"/>
       <text class="todo-item-name">创建清单</text>
