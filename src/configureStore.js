@@ -1,7 +1,6 @@
 import {Redux, ReduxPersist, ReduxSaga, RemoteReduxDevTools} from './libs/index';
 import reducer from './reducers/index';
-import simpleRestClient from './rest/simple';
-import crudFetch from './effects/crudFetch';
+import rootEffect from './effects/index';
 
 const {createStore, compose, applyMiddleware} = Redux;
 
@@ -13,7 +12,7 @@ function configureStore() {
     compose(applyMiddleware(sagaMiddleware), ReduxPersist.autoRehydrate(), devtool)
   );
 
-  sagaMiddleware.run(crudFetch(simpleRestClient('http://localhost:3000')));
+  sagaMiddleware.run(rootEffect);
 
   return store;
 }

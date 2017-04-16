@@ -4,7 +4,7 @@
     <navigator url="../todos/index?projectId={{item}}" wx:for="{{projects.list.ids}}" class="project-item flex-middle" wx:key="{{item}}">
       <image class="list-item-icon" src="../../images/list.svg"/>
       <text class="project-name flex-unit">{{projects.data[item].name}}</text>
-      <text class="project-todos-count">2</text>
+      <text class="project-todos-count">{{projects.data[item].todosCount}}</text>
     </navigator>
     <view class="add-project-item flex-middle" bindtap="showProjectForm">
       <image class="list-item-icon" src="../../images/plus.svg"/>
