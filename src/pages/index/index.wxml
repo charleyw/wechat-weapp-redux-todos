@@ -15,7 +15,7 @@
     <image src="../../images/plus-white.svg"/>
   </view>
 
-  <view class="modal project-form" wx:if="{{isShowProjectForm}}">
+  <view class="modal project-form {{isShowProjectForm ? 'active' : ''}}">
     <form>
       <view class="flex-middle form-input">
         <image class="list-item-icon" src="../../images/list.svg"/>
@@ -26,6 +26,7 @@
             value="{{projectForm.name}}"
             bindinput="handleInputProjectName"
             bindconfirm="submitProject"
+            focus="{{isShowProjectForm}}"
         />
       </view>
 
@@ -36,7 +37,7 @@
     </form>
   </view>
 
-  <view class="modal todo-form" wx:if="{{isShowTodoForm}}">
+  <view class="modal todo-form {{isShowTodoForm ? 'active' : ''}}">
     <form>
       <input
           class="todo-name"
@@ -45,6 +46,7 @@
           placeholder="你希望做什么呢?"
           bindinput="handleInputTodoName"
           bindconfirm="submitTodo"
+          focus="{{isShowTodoForm}}"
       />
       <view class="bottom-bar">
         <view class="project-item flex-middle" bindtap="showProjectSelect">
@@ -58,7 +60,7 @@
         </view>
       </view>
     </form>
-    <view class="modal project-select" wx:if="{{todoForm.isShowProjectSelect}}">
+    <view class="modal project-select {{todoForm.isShowProjectSelect ? 'active' : ''}}">
       <view
           wx:for="{{projects.list.ids}}"
           wx:key="{{item}}"
