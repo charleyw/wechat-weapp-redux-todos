@@ -11,10 +11,10 @@ export const CRUD_GET_LIST_LOADING = 'CRUD_GET_LIST_LOADING';
 export const CRUD_GET_LIST_FAILURE = 'CRUD_GET_LIST_FAILURE';
 export const CRUD_GET_LIST_SUCCESS = 'CRUD_GET_LIST_SUCCESS';
 
-export const crudGetList = (resource, pagination, sort, filter) => ({
+export const crudGetList = (resource, pagination, sort, filter, meta) => ({
     type: CRUD_GET_LIST,
     payload: { pagination, sort, filter },
-    meta: { resource, fetch: GET_LIST, cancelPrevious: true },
+    meta: { resource, fetch: GET_LIST, cancelPrevious: true, ...meta },
 });
 
 export const CRUD_GET_ONE = 'CRUD_GET_ONE';
@@ -33,10 +33,10 @@ export const CRUD_CREATE_LOADING = 'CRUD_CREATE_LOADING';
 export const CRUD_CREATE_FAILURE = 'CRUD_CREATE_FAILURE';
 export const CRUD_CREATE_SUCCESS = 'CRUD_CREATE_SUCCESS';
 
-export const crudCreate = (resource, data, basePath) => ({
+export const crudCreate = (resource, data, basePath, meta) => ({
     type: CRUD_CREATE,
     payload: { data, basePath },
-    meta: { resource, fetch: CREATE, cancelPrevious: false },
+    meta: { resource, fetch: CREATE, cancelPrevious: false, ...meta },
 });
 
 export const CRUD_UPDATE = 'CRUD_UPDATE';

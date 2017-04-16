@@ -1,34 +1,16 @@
-import {assign} from '../utils/Object'
+import { Redux } from '../libs/index';
+import data from './resource/data';
+import ids from './resource/list/ids';
 
-const todo = (state, action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return {
-        id: action.id,
-        text: action.text,
-        createdAt: action.createdAt,
-        completed: false
-      };
-    case 'TOGGLE_TODO':
-      if (state.id !== action.id) {
-        return state
-      }
+const list = (state = {}, action) => {
+  if (!action.meta || action.meta.resource !== 'todos') return state;
 
-      return assign({}, state, {completed: !state.completed});
-    default:
-      return state
-  }
+  const projectTodoIds = ids('todos')(state[action.meta.projectId] || [], action);
+  return {...state, [action.meta.projectId]: projectTodoIds}
 };
 
-const todos = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [todo(undefined, action), ...state];
-    case 'TOGGLE_TODO':
-      return state.map(t => todo(t, action));
-    default:
-      return state
-  }
-};
 
-module.exports = todos;
+export default Redux.combineReducers({
+  data: data('todos'),
+  list: list,
+});

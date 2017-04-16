@@ -20,7 +20,7 @@ const tryToLogin = (err, state) => {
   }
 };
 
-ReduxPersist.persistStore(store, {storage: WeAppStorage, debounce: 200, whitelist: ['auth', 'projects', 'todos']}, tryToLogin);
+ReduxPersist.persistStore(store, {storage: WeAppStorage, debounce: 200, whitelist: ['auth', 'projects']}, tryToLogin);
 
 App(Provider(store)({
   onLaunch: function () {

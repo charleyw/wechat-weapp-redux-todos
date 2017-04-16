@@ -21,14 +21,14 @@ const pageConfig = {
   submit: function() {
     if(this.data.todo.length <= 0) return;
 
-    this.addTodo('58ef4b20b123db005822d048', this.data.todo);
+    this.addTodo(this.projectId, this.data.todo);
     this.setData({todo: ''})
   },
   switchCompleted: function() {
     this.setData({showCompleted: !this.data.showCompleted});
   },
-  onLoad: function() {
-    console.log('on load')
+  onLoad: function(options) {
+    this.projectId = options.projectId;
   },
   onUnload: function() {
     console.log('on unload')
@@ -48,8 +48,8 @@ const filterTodos = ( todos, filter ) => {
   }
 };
 
-const mapStateToData = state => {
-  const todos = state.todos.list.ids.map(id => state.todos.data[id]).filter(f => f);
+const mapStateToData = (state, options) => {
+  const todos = (state.todos.list[options.projectId] || []).map(id => state.todos.data[id]).filter(f => f);
   return {
     todos: filterTodos(todos, 'SHOW_ACTIVE'),
     completedTodos: filterTodos(todos, 'SHOW_COMPLETED'),
