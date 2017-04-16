@@ -43,6 +43,7 @@
           class="todo-name"
           placeholder-class="todo-name-input-placeholder"
           name="name"
+          value="{{todoForm.name}}"
           placeholder="你希望做什么呢?"
           bindinput="handleInputTodoName"
           bindconfirm="submitTodo"

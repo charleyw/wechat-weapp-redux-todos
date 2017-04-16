@@ -30,7 +30,7 @@ const pageConfig = {
   submitTodo: function () {
     if (this.data.todoForm.name.length > 0) {
       this.addTodo(this.data.todoForm.projectId || this.data.projects.list.ids[0], this.data.todoForm.name);
-      this.setData({projectForm: {name: ''}})
+      this.setData({todoForm: {name: ''}})
     } else {
       this.hideTodoForm();
     }
