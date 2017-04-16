@@ -28,3 +28,49 @@ page {
 .flex-unit {
   flex: 1;
 }
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom:0;
+}
+
+.modal .mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom:0;
+  background-color: rgba(0, 0, 0, .3);
+}
+
+.btn-area {
+  padding: 8px;
+}
+
+.btn-area.btn-inline {
+  display: flex;
+}
+
+.btn-area.btn-inline button {
+  flex: 1;
+}
+
+.btn-area button {
+  font-size: 14px;
+}
+
+.btn-area button:not(:last-child){
+  margin-right: 8px;
+}
+
+.btn-primary {
+  background-color: #3dbd7d;
+  color: #fff;
+}
+
+.btn-primary:active {
+  background-color: #00a854;
+}

@@ -2,6 +2,7 @@ const {Redux: {combineReducers}} = require('../libs/index');
 
 import auth from './auth'
 import resourceReducer from './resource/index'
+import pages from './pages/index'
 
 export default (resources) => {
   const resourceReducers = {};
@@ -12,5 +13,6 @@ export default (resources) => {
   return combineReducers({
     ...resourceReducers,
     auth,
+    pages
   });
 };

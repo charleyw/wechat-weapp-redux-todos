@@ -1,17 +1,38 @@
 <!--index.wxml-->
 <view class="container">
   <view class="projects">
-    <view wx:for="{{projects}}" class="project-item flex-middle" wx:key="{{item.id}}">
+    <view wx:for="{{projects.list.ids}}" class="project-item flex-middle" wx:key="{{item}}">
       <image class="list-item-icon" src="../../images/list.svg"/>
-      <text class="project-name flex-unit">{{item.name}}</text>
+      <text class="project-name flex-unit">{{projects.data[item].name}}</text>
       <text class="project-todos-count">2</text>
     </view>
-    <view class="add-project-item flex-middle">
+    <view class="add-project-item flex-middle" bindtap="showProjectForm">
       <image class="list-item-icon" src="../../images/plus.svg"/>
       <text class="todo-item-name">创建清单</text>
     </view>
   </view>
   <view class="float-action-btn add-todo">
     <image src="../../images/plus-white.svg"/>
+  </view>
+
+  <view class="modal project-form" wx:if="{{isShowProjectForm}}">
+    <form>
+      <view class="flex-middle form-input">
+        <image class="list-item-icon" src="../../images/list.svg"/>
+        <input
+            class="project-name"
+            name="name"
+            placeholder="清单名称"
+            value="{{projectForm.name}}"
+            bindinput="handleInputProjectName"
+            bindconfirm="submitProject"
+        />
+      </view>
+
+      <view class="btn-area btn-inline">
+        <button class="btn-primary btn-block" form-type="reset" bindtap="submitProject">创建</button>
+        <button class="btn-block" bindtap="hideProjectForm" form-type="reset">取消</button>
+      </view>
+    </form>
   </view>
 </view>
