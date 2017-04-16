@@ -5,7 +5,7 @@
 .project-item,
 .add-project-item {
   display: flex;
-  padding: 0 24px;
+  padding: 0 12px;
   height: 48px;
   align-items: center;
 }
@@ -55,12 +55,45 @@
   height: 100%;
 }
 
+.project-select,
+.todo-form,
 .project-form {
   background: #f5f5f5;
 }
 
 .form-input {
-  padding: 0 16px;
+  padding: 0 12px;
   height: 48px;
   border-bottom: 1rpx solid #ccc;
+}
+
+.todo-name {
+  margin-top: 12px;
+  padding: 0 12px;
+  font-size: 18px;
+}
+
+.todo-name-input-placeholder {
+  color: #ccc;
+}
+
+.todo-form .bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1rpx solid #ccc;
+}
+
+.todo-form .actions {
+  color: #999;
+  background-color: #eee;
+}
+
+.todo-form .project-item {
+  height: 30px;
+}
+
+.bottom-bar .project-name {
+  color: #999;
 }

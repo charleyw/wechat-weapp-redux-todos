@@ -11,7 +11,7 @@
       <text class="todo-item-name">创建清单</text>
     </view>
   </view>
-  <view class="float-action-btn add-todo">
+  <view class="float-action-btn add-todo" bindtap="showTodoForm">
     <image src="../../images/plus-white.svg"/>
   </view>
 
@@ -34,5 +34,42 @@
         <button class="btn-block" bindtap="hideProjectForm" form-type="reset">取消</button>
       </view>
     </form>
+  </view>
+
+  <view class="modal todo-form" wx:if="{{isShowTodoForm}}">
+    <form>
+      <input
+          class="todo-name"
+          placeholder-class="todo-name-input-placeholder"
+          name="name"
+          placeholder="你希望做什么呢?"
+          bindinput="handleInputTodoName"
+          bindconfirm="submitTodo"
+      />
+      <view class="bottom-bar">
+        <view class="project-item flex-middle" bindtap="showProjectSelect">
+          <image class="list-item-icon" src="../../images/list.svg"/>
+          <text class="project-name flex-unit" id="{{todoForm.projectId}}">{{projects.data[todoForm.projectId || projects.list.ids[0]].name}}</text>
+          <image class="list-item-icon" src="../../images/arrow-up.svg"/>
+        </view>
+        <view class="project-item flex-middle actions">
+          <view class="flex-unit"/>
+          <text bindtap="submitTodo">完成</text>
+        </view>
+      </view>
+    </form>
+    <view class="modal project-select" wx:if="{{todoForm.isShowProjectSelect}}">
+      <view
+          wx:for="{{projects.list.ids}}"
+          wx:key="{{item}}"
+          id="{{item}}"
+          bindtap="selectProject"
+          class="project-item flex-middle"
+      >
+        <image class="list-item-icon" src="../../images/list.svg"/>
+        <text id="{{item}}" class="project-name flex-unit">{{projects.data[item].name}}</text>
+        <icon wx:if="{{todoForm.projectId == item}}" color="#3dbd7d" type="success_no_circle" size="18"/>
+      </view>
+    </view>
   </view>
 </view>
