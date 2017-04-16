@@ -1,9 +1,7 @@
 //index.js
-import {WeAppRedux} from '../../libs/index';
 import {showProjectForm, hideProjectForm, showTodoForm, hideTodoForm} from '../../actions/pages/projects';
 import {addProject, addTodo} from '../../actions/index';
-
-const {connect} = WeAppRedux;
+import {enhancedConnect} from '../../utils/enhancedConnect';
 
 const pageConfig = {
   data: {
@@ -40,6 +38,12 @@ const pageConfig = {
   },
   selectProject: function(e) {
     this.setData({todoForm: {...this.data.todoForm, projectId: e.target.id, isShowProjectSelect: false}})
+  },
+  onAuthenticated: function() {
+    console.log('onAuthenticated', this)
+  },
+  onRehydrated: function() {
+    console.log('onRehydrated', this)
   }
 };
 
@@ -58,5 +62,5 @@ const mapDispatchToPage = dispatch => ({
   addProject: (name) => dispatch(addProject(name))
 });
 
-const nextPageConfig = connect(mapStateToData, mapDispatchToPage)(pageConfig);
+const nextPageConfig = enhancedConnect(mapStateToData, mapDispatchToPage)(pageConfig);
 Page(nextPageConfig);
