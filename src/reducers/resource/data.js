@@ -13,8 +13,8 @@ import {
  * {
  *   23: { id: 23, title: 'War and Peace' },
  *   67: { id: 67, title: 'Anna Karenina' },
- *   fetchedAt: { // non enumerable
- *     23: new Date('2016-08-05T19:33:15.012Z'),
+ *   fetchedAt: {
+ *     23: new Date('2016-08-05T19:33:15.012Z').getTime(),
  *     67: new Date('2016-08-05T19:33:43.449Z'),
  *   },
  * }
@@ -35,7 +35,7 @@ const addRecords = (newRecords = [], oldRecords) => {
     prev[record.id] = record; // eslint-disable-line no-param-reassign
     return prev;
   }, {});
-  const now = new Date();
+  const now = new Date().getTime();
   const newRecordsFetchedAt = newRecords.reduce((prev, record) => {
     prev[record.id] = now; // eslint-disable-line no-param-reassign
     return prev;
