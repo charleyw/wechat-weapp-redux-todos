@@ -1,6 +1,6 @@
 //index.js
 import {showProjectForm, hideProjectForm, showTodoForm, hideTodoForm} from '../../actions/pages/projects';
-import {addProject, addTodo} from '../../actions/index';
+import {addProject, addTodo, fetchProjects} from '../../actions/index';
 import {enhancedConnect} from '../../utils/enhancedConnect';
 
 const pageConfig = {
@@ -40,7 +40,8 @@ const pageConfig = {
     this.setData({todoForm: {...this.data.todoForm, projectId: e.target.id, isShowProjectSelect: false}})
   },
   onAuthenticated: function() {
-    console.log('onAuthenticated', this)
+    console.log('onAuthenticated', this);
+    this.fetchProjects();
   },
   onRehydrated: function() {
     console.log('onRehydrated', this)
@@ -59,7 +60,8 @@ const mapDispatchToPage = dispatch => ({
   showTodoForm: () => dispatch(showTodoForm()),
   hideTodoForm: () => dispatch(hideTodoForm()),
   addTodo: (projectId, name) => dispatch(addTodo(projectId, name)),
-  addProject: (name) => dispatch(addProject(name))
+  addProject: (name) => dispatch(addProject(name)),
+  fetchProjects: () => dispatch(fetchProjects())
 });
 
 const nextPageConfig = enhancedConnect(mapStateToData, mapDispatchToPage)(pageConfig);

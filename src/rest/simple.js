@@ -14,11 +14,7 @@ export default (apiUrl, httpClient = fetchJson) => {
     const {basePath} = params;
     switch (type) {
       case GET_LIST: {
-        const {page, perPage} = params.pagination;
-        const {field, order} = params.sort;
         const query = {
-          sort: JSON.stringify([field, order]),
-          range: JSON.stringify([(page - 1) * perPage, (page * perPage) - 1]),
           filter: JSON.stringify(params.filter),
         };
         url = `${apiUrl}/${resource}?${queryParameters(query)}`;
@@ -58,10 +54,7 @@ export default (apiUrl, httpClient = fetchJson) => {
     const {data} = response;
     switch (type) {
       case GET_LIST:
-        return {
-          data: json.map(x => x),
-          total: parseInt(headers.get('content-range').split('/').pop(), 10),
-        };
+        return data;
       default:
         return data;
     }
