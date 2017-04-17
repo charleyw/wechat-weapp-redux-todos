@@ -70,7 +70,8 @@
 .todo-name {
   margin-top: 12px;
   padding: 0 12px;
-  font-size: 18px;
+  font-size: 28px;
+  height: 1.4em;
 }
 
 .todo-name-input-placeholder {

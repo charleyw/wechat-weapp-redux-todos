@@ -26,7 +26,7 @@
             value="{{projectForm.name}}"
             bindinput="handleInputProjectName"
             bindconfirm="submitProject"
-            focus="{{isShowProjectForm}}"
+            focus="{{isProjectNameFocused}}"
         />
       </view>
 
@@ -47,7 +47,7 @@
           placeholder="你希望做什么呢?"
           bindinput="handleInputTodoName"
           bindconfirm="submitTodo"
-          focus="{{isShowTodoForm}}"
+          focus="{{isTodoNameFocused}}"
       />
       <view class="bottom-bar">
         <view class="project-item flex-middle" bindtap="showProjectSelect">

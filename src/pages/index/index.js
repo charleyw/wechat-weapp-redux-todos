@@ -45,6 +45,22 @@ const pageConfig = {
   },
   onRehydrated: function() {
     console.log('onRehydrated', this)
+  },
+  showProjectForm: function() {
+    this.store.dispatch(showProjectForm());
+    setTimeout(() => this.setData({isProjectNameFocused: true}), 400)
+  },
+  hideProjectForm: function() {
+    this.store.dispatch(hideProjectForm());
+    this.setData({isProjectNameFocused: false});
+  },
+  showTodoForm: function() {
+    this.store.dispatch(showTodoForm());
+    setTimeout(() => this.setData({isTodoNameFocused: true}), 400)
+  },
+  hideTodoForm: function() {
+    this.store.dispatch(hideTodoForm());
+    this.setData({isTodoNameFocused: false});
   }
 };
 
@@ -55,10 +71,6 @@ const mapStateToData = state => ({
 });
 
 const mapDispatchToPage = dispatch => ({
-  showProjectForm: () => dispatch(showProjectForm()),
-  hideProjectForm: () => dispatch(hideProjectForm()),
-  showTodoForm: () => dispatch(showTodoForm()),
-  hideTodoForm: () => dispatch(hideTodoForm()),
   addTodo: (projectId, name) => dispatch(addTodo(projectId, name)),
   addProject: (name) => dispatch(addProject(name)),
   fetchProjects: () => dispatch(fetchProjects())
