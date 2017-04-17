@@ -1,4 +1,4 @@
-import {ReduxSaga, ReduxSagaEffects, regeneratorRuntime} from '../libs/index';
+import {ReduxSagaEffects, regeneratorRuntime} from '../libs/index';
 import {
   FETCH_START,
   FETCH_END,
@@ -6,8 +6,7 @@ import {
   FETCH_CANCEL,
 } from '../actions/fetchActions';
 
-const {takeEvery, takeLatest} = ReduxSaga;
-const {put, call, cancelled, select} = ReduxSagaEffects;
+const {takeEvery, takeLatest, put, call, cancelled, select} = ReduxSagaEffects;
 
 const crudFetch = (restClient, successSideEffects = () => [], failureSideEffects = () => []) => {
   function *handleFetch(action) {
