@@ -34,10 +34,10 @@ const pageConfig = {
     }
   },
   showProjectSelect: function() {
-    this.setData({todoForm: {...this.data.todoForm, isShowProjectSelect: true}})
+    this.setData({todoForm: {...this.data.todoForm, isShowProjectSelect: true}, isTodoNameFocused: false})
   },
   selectProject: function(e) {
-    this.setData({todoForm: {...this.data.todoForm, projectId: e.target.id, isShowProjectSelect: false}})
+    this.setData({todoForm: {...this.data.todoForm, projectId: e.target.id, isShowProjectSelect: false}, isTodoNameFocused: true})
   },
   onAuthenticated: function() {
     console.log('onAuthenticated', this);

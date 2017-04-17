@@ -31,8 +31,8 @@
       </view>
 
       <view class="btn-area btn-inline">
-        <button class="btn-primary btn-block" form-type="reset" bindtap="submitProject">创建</button>
-        <button class="btn-block" bindtap="hideProjectForm" form-type="reset">取消</button>
+        <button class="btn-primary" size="mini" form-type="reset" bindtap="submitProject">创建</button>
+        <button size="mini" bindtap="hideProjectForm" form-type="reset">取消</button>
       </view>
     </form>
   </view>
@@ -49,16 +49,15 @@
           bindconfirm="submitTodo"
           focus="{{isTodoNameFocused}}"
       />
-      <view class="bottom-bar">
-        <view class="project-item flex-middle" bindtap="showProjectSelect">
-          <image class="list-item-icon" src="../../images/list.svg"/>
-          <text class="project-name flex-unit" id="{{todoForm.projectId}}">{{projects.data[todoForm.projectId || projects.list.ids[0]].name}}</text>
-          <image class="list-item-icon" src="../../images/arrow-up.svg"/>
-        </view>
-        <view class="project-item flex-middle actions">
-          <view class="flex-unit"/>
-          <text bindtap="submitTodo">完成</text>
-        </view>
+      <view class="project-item flex-middle" bindtap="showProjectSelect">
+        <image class="list-item-icon" src="../../images/list.svg"/>
+        <text class="project-name flex-unit" id="{{todoForm.projectId}}">{{projects.data[todoForm.projectId || projects.list.ids[0]].name}}</text>
+        <image class="list-item-icon" src="../../images/arrow-up.svg"/>
+      </view>
+      <view class="btn-area">
+        <button size="mini" bindtap="submitTodo" class="btn-block {{todoForm.name.length ? 'btn-primary' : ''}}">
+          {{todoForm.name.length ? '添加' : '完成'}}
+        </button>
       </view>
     </form>
     <view class="modal project-select {{todoForm.isShowProjectSelect ? 'active' : ''}}">

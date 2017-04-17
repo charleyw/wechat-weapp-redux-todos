@@ -83,3 +83,8 @@ page {
 .btn-primary:active {
   background-color: #00a854;
 }
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
