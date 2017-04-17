@@ -1,4 +1,4 @@
-import {ReduxSagaEffects, regeneratorRuntime} from '../libs/index'
+import {ReduxSagaEffects, regeneratorRuntime, appConfig} from '../libs/index'
 import simpleRestClient from '../rest/simple';
 
 import crudFetch from './crudFetch'
@@ -8,7 +8,7 @@ const {fork} = ReduxSagaEffects;
 
 export default function* root() {
   yield [
-    fork(crudFetch(simpleRestClient('http://localhost:3000'))),
+    fork(crudFetch(simpleRestClient(appConfig.apiBaseUrl))),
     fork(watchAddTodo)
   ]
 }

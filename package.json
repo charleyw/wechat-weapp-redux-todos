@@ -7,7 +7,7 @@
   "author": "Chao Wang <cwang8023@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "npm run remote-dev-server && gulp dev",
+    "dev": "npm run remote-dev-server && NODE_ENV=development gulp dev",
     "remote-dev-server": "remotedev --hostname=localhost --port=5678 &",
     "build": "gulp build",
     "release": "NODE_ENV=production gulp build"
