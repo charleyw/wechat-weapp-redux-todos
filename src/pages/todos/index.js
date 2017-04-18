@@ -31,6 +31,7 @@ const pageConfig = {
   },
   onLoad: function(options) {
     this.projectId = options.projectId;
+    wx.setNavigationBarTitle({title: this.data.project.name});
   },
   onAuthenticated: function(options) {
     this.fetchTodos(options.projectId);
@@ -53,6 +54,7 @@ const filterTodos = ( todos, filter ) => {
 const mapStateToData = (state, options) => {
   const todos = (state.todos.list[options.projectId] || []).map(id => state.todos.data[id]).filter(f => f);
   return {
+    project: state.projects.data[options.projectId],
     todos: state.todos.data,
     activeTodos: filterTodos(todos, 'SHOW_ACTIVE'),
     completedTodos: filterTodos(todos, 'SHOW_COMPLETED'),
