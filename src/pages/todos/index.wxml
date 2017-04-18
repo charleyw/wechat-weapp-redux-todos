@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<include src="../../templates/notification"/>
 <view class="container">
   <form>
     <view class="todo-input-container">

@@ -56,7 +56,8 @@ const mapStateToData = (state, options) => {
     todos: state.todos.data,
     activeTodos: filterTodos(todos, 'SHOW_ACTIVE'),
     completedTodos: filterTodos(todos, 'SHOW_COMPLETED'),
-    visibilityFilter: state.visibilityFilter
+    visibilityFilter: state.visibilityFilter,
+    notification: state.notification
   }
 };
 

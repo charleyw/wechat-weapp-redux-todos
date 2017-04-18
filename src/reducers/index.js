@@ -5,6 +5,7 @@ import resourceReducer from './resource/index'
 import pages from './pages/index'
 import todos from './todos'
 import rehydrated from './rehydrated'
+import notification from './notification'
 
 export default (resources) => {
   const resourceReducers = {};
@@ -17,6 +18,7 @@ export default (resources) => {
     todos,
     auth,
     pages,
-    rehydrated
+    rehydrated,
+    notification
   });
 };

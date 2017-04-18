@@ -88,3 +88,34 @@ page {
   display: block;
   width: 100%;
 }
+
+.notification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 8px;
+  width: 100%;
+  height: 64px;
+  z-index: 2;
+  transform: translateY(-100%);
+  transition: transform 400ms ease-in-out;
+}
+
+.notification.show {
+  transform: translateY(0);
+}
+
+.notification-content {
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background-color: #000;
+  color: #fff;
+}
+
+.notification-content icon {
+  margin-right: 12px;
+}

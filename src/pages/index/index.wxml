@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<include src="../../templates/notification"/>
 <view class="container">
   <view class="projects">
     <navigator url="../todos/index?projectId={{item}}" wx:for="{{projects.list.ids}}" class="project-item flex-middle" wx:key="{{item}}">

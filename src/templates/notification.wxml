@@ -1,0 +1,6 @@
+<view class="notification {{notification.text ? 'show' : ''}} {{notification.type}}">
+  <view class="notification-content">
+    <icon type="{{notification.type}}"/>
+    <view class="notification-message">{{notification.text}}</view>
+  </view>
+</view>

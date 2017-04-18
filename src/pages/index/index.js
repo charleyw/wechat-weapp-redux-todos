@@ -67,7 +67,8 @@ const pageConfig = {
 const mapStateToData = state => ({
   isShowProjectForm: state.pages.projects.showProjectForm,
   isShowTodoForm: state.pages.projects.showTodoForm,
-  projects: state.projects
+  projects: state.projects,
+  notification: state.notification
 });
 
 const mapDispatchToPage = dispatch => ({
