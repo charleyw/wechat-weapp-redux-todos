@@ -16,13 +16,13 @@ export function enhancedConnect(mapToState, mapToDispatch) {
 
         if (typeof onRehydrated === 'function') {
           if(state.rehydrated){
-            onRehydrated.call(this)
+            onRehydrated.call(this, options)
           } else {
             this.unsubscribeRehydrate = this.store.subscribe(() => {
               const state = this.store.getState();
               if (state.rehydrated) {
                 this.unsubscribeRehydrate();
-                onRehydrated.call(this);
+                onRehydrated.call(this, options);
               }
             });
           }
@@ -31,13 +31,13 @@ export function enhancedConnect(mapToState, mapToDispatch) {
         const authenticated = state => state.auth && state.auth.authenticated && state.auth.expiredAt > new Date().getTime();
         if (typeof onAuthenticated === 'function') {
           if(authenticated(state)) {
-            onAuthenticated.call(this)
+            onAuthenticated.call(this, options)
           } else {
             this.unsubscribeAuth = this.store.subscribe(() => {
               const state = this.store.getState();
               if (authenticated(state)) {
                 this.unsubscribeAuth();
-                onAuthenticated.call(this);
+                onAuthenticated.call(this, options);
               }
             });
           }

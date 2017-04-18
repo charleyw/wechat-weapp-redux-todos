@@ -11,9 +11,9 @@ export const CRUD_GET_LIST_LOADING = 'CRUD_GET_LIST_LOADING';
 export const CRUD_GET_LIST_FAILURE = 'CRUD_GET_LIST_FAILURE';
 export const CRUD_GET_LIST_SUCCESS = 'CRUD_GET_LIST_SUCCESS';
 
-export const crudGetList = (resource, pagination, sort, filter, meta) => ({
+export const crudGetList = (resource, pagination, sort, filter, basePath, meta) => ({
     type: CRUD_GET_LIST,
-    payload: { pagination, sort, filter },
+    payload: { pagination, sort, filter, basePath },
     meta: { resource, fetch: GET_LIST, cancelPrevious: true, ...meta },
 });
 

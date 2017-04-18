@@ -17,7 +17,7 @@ export default (apiUrl, httpClient = fetchJson) => {
         const query = {
           filter: JSON.stringify(params.filter),
         };
-        url = `${apiUrl}/${resource}?${queryParameters(query)}`;
+        url = `${apiUrl}/${basePath ? basePath : resource}?${queryParameters(query)}`;
         break;
       }
       case GET_ONE:

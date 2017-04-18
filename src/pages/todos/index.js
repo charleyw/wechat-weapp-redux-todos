@@ -1,16 +1,18 @@
 //index.js
-const {WeAppRedux: {connect}} = require( '../../libs/index' )
-const {addTodo, setVisibilityFilter, toggleTodo} = require( '../../actions/index.js' )
+import {enhancedConnect} from '../../utils/enhancedConnect';
+import {addTodo, fetchTodos, updateTodo} from '../../actions/index';
+const {setVisibilityFilter, toggleTodo} = require( '../../actions/index.js' );
 
 const pageConfig = {
   data: {
-    todos: [],
     filters: [ { key: 'SHOW_ALL', text: '全部' }, { key: 'SHOW_ACTIVE', text: '正在进行' }, { key: 'SHOW_COMPLETED', text: '已完成' }],
     defaultInput: ''
   },
   handleCheck: function( e ) {
-    const id = parseInt( e.target.id )
-    this.toggleTodo( id );
+    const todo = this.data.todos[e.target.id];
+    if(todo) {
+      this.updateTodo(todo.id, {completed: !todo.completed})
+    }
   },
   applyFilter: function( e ) {
     this.setVisibilityFilter( e.target.id )
@@ -30,10 +32,10 @@ const pageConfig = {
   onLoad: function(options) {
     this.projectId = options.projectId;
   },
-  onUnload: function() {
-    console.log('on unload')
+  onAuthenticated: function(options) {
+    this.fetchTodos(options.projectId);
   }
-}
+};
 
 const filterTodos = ( todos, filter ) => {
   switch( filter ) {
@@ -51,7 +53,8 @@ const filterTodos = ( todos, filter ) => {
 const mapStateToData = (state, options) => {
   const todos = (state.todos.list[options.projectId] || []).map(id => state.todos.data[id]).filter(f => f);
   return {
-    todos: filterTodos(todos, 'SHOW_ACTIVE'),
+    todos: state.todos.data,
+    activeTodos: filterTodos(todos, 'SHOW_ACTIVE'),
     completedTodos: filterTodos(todos, 'SHOW_COMPLETED'),
     visibilityFilter: state.visibilityFilter
   }
@@ -59,9 +62,10 @@ const mapStateToData = (state, options) => {
 
 const mapDispatchToPage = dispatch => ({
   setVisibilityFilter: filter => dispatch(setVisibilityFilter(filter)),
-  toggleTodo: id => dispatch(toggleTodo(id)),
+  updateTodo: (id, data) => dispatch(updateTodo(id, data)),
   addTodo: (projectId, todo) => dispatch(addTodo(projectId, todo)),
-})
+  fetchTodos: (projectId) => dispatch(fetchTodos(projectId)),
+});
 
-const nextPageConfig = connect(mapStateToData, mapDispatchToPage)(pageConfig)
+const nextPageConfig = enhancedConnect(mapStateToData, mapDispatchToPage)(pageConfig)
 Page(nextPageConfig);
