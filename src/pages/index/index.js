@@ -40,11 +40,7 @@ const pageConfig = {
     this.setData({todoForm: {...this.data.todoForm, projectId: e.target.id, isShowProjectSelect: false}, isTodoNameFocused: true})
   },
   onAuthenticated: function() {
-    console.log('onAuthenticated', this);
     this.fetchProjects();
-  },
-  onRehydrated: function() {
-    console.log('onRehydrated', this)
   },
   showProjectForm: function() {
     this.store.dispatch(showProjectForm());
