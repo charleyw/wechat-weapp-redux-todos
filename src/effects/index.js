@@ -3,12 +3,14 @@ import simpleRestClient from '../rest/simple';
 
 import crudFetch from './crudFetch'
 import {watchAddTodo} from './projectTodoCount'
+import {watchFetchLoading} from './navBarLoading'
 
 const {fork} = ReduxSagaEffects;
 
 export default function* root() {
   yield [
     fork(crudFetch(simpleRestClient(appConfig.apiBaseUrl))),
-    fork(watchAddTodo)
+    fork(watchAddTodo),
+    fork(watchFetchLoading)
   ]
 }
