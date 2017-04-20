@@ -6,12 +6,21 @@
 
 .todo-item,
 .todo-input-container {
+  position: relative;
   display: flex;
   margin-bottom: 8px;
   padding: 0 16px;
   height: 48px;
   align-items: center;
   border-radius: 4px;
+}
+
+.touchable {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .todo-input-container {

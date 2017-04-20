@@ -22,8 +22,9 @@
 
   <view class="todos">
     <view wx:for="{{activeTodos}}" class="todo-item {{item.completed ? 'completed' : ''}}" wx:key="{{item.id}}">
-      <icon class="todo-item-check" type="{{item.completed ? 'success_circle' : 'circle'}}" size="18" bindtap="handleCheck" id="{{item.id}}"/>
-      <text class="todo-item-name" bindtap="handleCheck" id="{{item.id}}">{{item.name}}</text>
+      <view class="touchable" id="{{item.id}}" bindtap="handleCheck"/>
+      <icon class="todo-item-check" type="{{item.completed ? 'success_circle' : 'circle'}}" size="18"/>
+      <text class="todo-item-name">{{item.name}}</text>
     </view>
   </view>
   <view class="show-completed-btn" bindtap="switchCompleted" wx:if="{{completedTodos && completedTodos.length > 0}}">
@@ -31,8 +32,9 @@
   </view>
   <view class="todos" wx:if="{{showCompleted}}">
     <view wx:for="{{completedTodos}}" class="todo-item {{item.completed ? 'completed' : ''}}" wx:key="{{item.id}}">
-      <icon class="todo-item-check" color="{{item.completed ? '#999' : '#333'}}" type="{{item.completed ? 'success_circle' : 'circle'}}" size="18" bindtap="handleCheck" id="{{item.id}}"/>
-      <text class="todo-item-name" bindtap="handleCheck" id="{{item.id}}">{{item.name}}</text>
+      <view class="touchable" id="{{item.id}}" bindtap="handleCheck"/>
+      <icon class="todo-item-check" color="{{item.completed ? '#999' : '#333'}}" type="{{item.completed ? 'success_circle' : 'circle'}}" size="18"/>
+      <text class="todo-item-name">{{item.name}}</text>
     </view>
   </view>
 </view>
