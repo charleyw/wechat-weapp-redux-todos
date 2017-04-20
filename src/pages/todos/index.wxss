@@ -1,5 +1,7 @@
 .container {
   padding: 8px;
+  background: url('http://cdn.kidsmeet.cn/architecture-2198092_1280.jpg') no-repeat center;
+  background-size: cover;
 }
 
 .todo-item,
