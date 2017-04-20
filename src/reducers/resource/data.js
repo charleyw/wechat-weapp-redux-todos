@@ -77,7 +77,7 @@ export default (resource) => (previousState = initialState, {type, payload, meta
     case CRUD_GET_LIST_SUCCESS:
       return addRecords(payload.data, previousState);
     case CRUD_UPDATE: // replace record in edit form with edited one to avoid displaying previous record version
-      return addRecords([payload.data], previousState);
+      return addRecords([{...previousState[payload.data.id], ...payload.data}], previousState);
     case CRUD_GET_ONE_SUCCESS:
     case CRUD_UPDATE_SUCCESS:
     case CRUD_CREATE_SUCCESS:
