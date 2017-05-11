@@ -32,7 +32,7 @@ gulp.task('copy-other-files', function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch('src/libs/index.js', ['build-lib']);
+  gulp.watch('src/libs/*.js', ['build-lib']);
   gulp.watch(['src/**/*.js', '!src/libs/*'], ['transform-js']);
   gulp.watch(['src/**/*.json', 'src/**/*.wxml', 'src/**/*.wxss', 'src/images/*.svg'], ['copy-other-files'])
 });
