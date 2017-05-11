@@ -1,0 +1,29 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "工作"
+    },
+    {
+      "id": 2,
+      "name": "生活"
+    }
+  ],
+  "todos": [
+    {
+      "id": 1,
+      "projectId": 1,
+      "name": "写文档",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "projectId": 2,
+      "name": "买菜",
+      "completed": true
+    }
+  ],
+  "auth": {
+    "code": "003C4jqm1icxTl0JwNnm1aMrqm1C4jqs"
+  }
+}
