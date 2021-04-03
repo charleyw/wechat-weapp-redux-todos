@@ -4,8 +4,7 @@ const webpackStream = require('webpack-stream');
 const rename = require("gulp-rename");
 const babel = require('gulp-babel');
 const plumber = require('gulp-plumber');
-const clean = require('gulp-clean');
-const runSequence = require('run-sequence');
+const gulpClean = require('gulp-clean');
 const webpack = require('webpack');
 
 gulp.task('build-lib', function () {
@@ -20,8 +19,8 @@ gulp.task('transform-js', function () {
   return gulp.src(['src/**/*.js', '!src/libs/*'])
     .pipe(plumber())
     .pipe(babel({
-      presets: ['es2015'],
-      plugins: ["transform-object-rest-spread"]
+      presets: ['@babel/preset-env'],
+      plugins: ["@babel/plugin-proposal-object-rest-spread"]
     }))
     .pipe(gulp.dest('dist'));
 });
@@ -31,20 +30,21 @@ gulp.task('copy-other-files', function () {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('watch', function () {
-  gulp.watch('src/libs/*.js', ['build-lib']);
-  gulp.watch(['src/**/*.js', '!src/libs/*'], ['transform-js']);
-  gulp.watch(['src/**/*.json', 'src/**/*.wxml', 'src/**/*.wxss', 'src/images/*.svg'], ['copy-other-files'])
+gulp.task('watch', function (done) {
+  gulp.watch('src/libs/*.js', gulp.series('build-lib'));
+  gulp.watch(['src/**/*.js', '!src/libs/*'], gulp.series('transform-js'));
+  gulp.watch(['src/**/*.json', 'src/**/*.wxml', 'src/**/*.wxss', 'src/images/*.svg'], gulp.series('copy-other-files'))
+  done()
 });
 
-gulp.task('dev', function () {
-  return runSequence('build', 'watch')
-});
 
-gulp.task('clean', function () {
-  return gulp.src('dist/*', {read: false}).pipe(clean());
-});
 
-gulp.task('build', function () {
-  return runSequence('clean', ['build-lib', 'transform-js', 'copy-other-files'])
-});
+const clean = function (cb) {
+    gulp.src('dist/*', {read: false}).pipe(gulpClean())
+    cb()
+};
+const build = gulp.series(clean, 'build-lib', 'transform-js', 'copy-other-files')
+const dev = gulp.series(build, 'watch')
+exports.clean = clean
+exports.build = build
+exports.dev = dev
